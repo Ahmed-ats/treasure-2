@@ -4,7 +4,9 @@ import ImageCard from "../ImageCard";
 
 const ImageList = (props) => {
     
-   
+    for (var i=0; i<props.itemObj.length; i++) {
+       
+       
         
 
         var Image = props.itemObj.map(object => {
