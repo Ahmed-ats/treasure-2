@@ -28,5 +28,5 @@ const ImageList = (props) => {
         </div>
     )
 };
-
+}
 export default ImageList;
