@@ -1,6 +1,9 @@
 import React from 'react';
 
+
 const HomeImageCard = (props) => {
+
+   
 
     var Card = props.items.map(item => {
         return (
@@ -11,7 +14,10 @@ const HomeImageCard = (props) => {
                     <h6 className="card-subtitle mb-2 text-muted">Location: {item.zipCode}</h6>
                     <p className="card-text">{item.itemDescription}</p>
                     <p className="card-text">Posted By: {props.user}</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+
+                    <button href="#" className="btn btn-primary" onClick={() => {
+                    props.getId(item._id)
+                    }}>Go somewhere</button>
                 </div>
             </div>
         );

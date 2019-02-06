@@ -73,6 +73,7 @@ app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+<<<<<<< HEAD
 app.put('/api/userimage/:id', isAuthenticated  , (req, res) => {
  console.log(req.body)
   db.User.findOneAndUpdate({_id:req.params.id}, req.body)
@@ -88,6 +89,8 @@ app.put('/api/userimage/:id', isAuthenticated  , (req, res) => {
 
 
 
+=======
+>>>>>>> 58c358fe8fd69f70da3f9e765be6a4c1f1d1ba1f
 //Get items from DB
 app.get('/api/getitem/:id', isAuthenticated, (req, res)=>{
   db.Item.findById(req.params.id)
@@ -183,43 +186,61 @@ connections = [];
 
 //Needs to verify user (socket.on(VERIFY_USER), Then connect with username)
 io.on('connection', function(socket){
-    connections.push(socket);
-    console.log("connected: %s sockets connected", connections.length);
+    // connections.push(socket);
+    // console.log("connected: %s sockets connected", connections.length);
+    // //Disconnect
+    // socket.on('disconnect', function(data){
+    //     // if(!socket.username) return;
+    //     users.splice(users.indexOf(socket.username), 1);
+    //     updateUsernames();
+    //     connections.splice(connections.indexOf(socket), 1);
+    //     console.log("Disconnected: %s sockets connected", connections.length);
+    // });
 
-
-    //Disconnect
-    socket.on('disconnect', function(data){
-        // if(!socket.username) return;
-        users.splice(users.indexOf(socket.username), 1);
-        updateUsernames();
-        connections.splice(connections.indexOf(socket), 1);
-        console.log("Disconnected: %s sockets connected", connections.length);
-    });
-
-    socket.on('message', function(data){
+    socket.on('test', function(data) {
       console.log(data);
-      io.emit('message', data);
+      socket.join(data);
     });
 
-    
+  
+
+    // socket.on('disconnect', function () {
+    //   console.log('socket disconnect...', socket.id)
+    //   handleDisconnect()
+    // })
+
+    // socket.on('error', function (err) {
+    //   console.log('received error from socket:', socket.id)
+    //   console.log(err)
+    // })
+
+
+
+
+
+
+    // socket.on('message', function(data){
+    //   console.log(data);
+    //   io.emit('message', data);
+    // });
 
     //send message
-    socket.on('send message', function(data){
-        console.log(data)
-        io.emit('new message', {msg: data, user:socket.username})
-    });
+    // socket.on('send message', function(data){
+    //     console.log(data)
+    //     io.emit('new message', {msg: data, user:socket.username})
+    // });
 
-    //new user
-    socket.on('new user', function(data, callback){
-        callback(true);
-        socket.username = data;
-        users.push(socket.username);
-        updateUsernames();
-    });
+    // //new user
+    // socket.on('new user', function(data, callback){
+    //     callback(true);
+    //     socket.username = data;
+    //     users.push(socket.username);
+    //     updateUsernames();
+    // });
 
-    function updateUsernames(){
-        io.emit('get users', users);
-    }
+    // function updateUsernames(){
+    //     io.emit('get users', users);
+    // }
 });
 //end chat code
 

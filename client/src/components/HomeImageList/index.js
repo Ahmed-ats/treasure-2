@@ -7,6 +7,7 @@ const HomeImageList = (props) => {
         return <HomeImageCard
         user={user.username}
         items={user.items}
+        getId={props.getId}
         />
     })
     

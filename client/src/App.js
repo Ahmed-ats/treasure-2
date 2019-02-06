@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import API from '../src/utils/API';
+import  { sockets }  from '../src/utils/sockets';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
 import HomeImageList from './components/HomeImageList'
@@ -16,6 +17,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+
     API.getAllUsers()
     .then(res => {
       console.log(res.data)
@@ -24,7 +26,16 @@ class App extends Component {
       })
       console.log(this.state)
     });
+
   }
+
+  getId = (itemId) => {
+
+    sockets.test(itemId);
+
+  }
+
+
 
   handleSearchSubmit = () => {
     
@@ -68,13 +79,10 @@ class App extends Component {
 
   render() {
     // console.log(process.env.REACT_APP_SECRET_CODE);
-
-   
     return (
-    
       <div className="App">
         <div className="App-header">
-          <h2>Welcome!</h2>
+          {/* <h2>Welcome!</h2> */}
           <div>
           <input className="informationInupt"
               name="search"
@@ -82,7 +90,7 @@ class App extends Component {
               value={this.state.search} 
               onChange={this.handleInputChange}
           />
-          <button onClick={this.handleSearchSubmit}
+          <button type="button" span class="badge badge-light" onClick={this.handleSearchSubmit}
           key={this.state.search}
           >Search</button>
           </div>
@@ -95,7 +103,7 @@ class App extends Component {
         <br></br>
         <br></br>
         
-        <HomeImageList users={this.state.items}/>
+        <HomeImageList users={this.state.items} getId={this.getId}/>
       
       </div>
   
