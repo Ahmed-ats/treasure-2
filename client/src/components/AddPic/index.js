@@ -39,31 +39,32 @@ class AddPic extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleProfileImage = this.handleProfileImage.bind(this);
   }
 
 
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.signUpUser(this.state.picture )
-      .then(res => {
-        // once the user has signed up
-        // send them to the login page
-        this.closeModal();
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   API.signUpUser(this.state.picture )
+  //     .then(res => {
+  //       // once the user has signed up
+  //       // send them to the login page
+  //       this.closeModal();
         
-        // this.props.history.replace('/login');
-      })
-      .catch(err => alert(err));
-  };
+  //       // this.props.history.replace('/login');
+  //     })
+  //     .catch(err => alert(err));
+  // };
 
-  handleInputChange = e => {
-    const {name, value} = e.target;
-    //the way the console log is located it looks like it is 1 letter behing but really it is not
-    console.log(this.state)
-    this.setState({
-        [name]: value
-    });
-}
+//   handleInputChange = e => {
+//     const {name, value} = e.target;
+//     //the way the console log is located it looks like it is 1 letter behing but really it is not
+//     console.log(this.state)
+//     this.setState({
+//         [name]: value
+//     });
+// }
 
   openModal() {
     this.setState({ modalIsOpen: true });
@@ -78,11 +79,41 @@ class AddPic extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
+  handleProfileImage(e) {
+
+    e.preventDefault();
+    const data = new FormData();
+    data.append('file', this.uploadInput.files[0] );
+    data.append('category', 'image');
+           
+    fetch('https://www.fileconvrtr.com/api/convert/file?apiKey=a8f545dbb31244a5b081a8cc6bdf37f7',{
+      method: 'POST',
+      body: data
+    }).then((response) => {
+  
+    response.json()
+    .then((body) => {
+        console.log(body)
+      this.setState({
+          picture: body.s3Url  
+        })
+        
+        });
+        this.closeModal();
+    });
+    
+}
+
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <button className="addPicButton" onClick={this.openModal}><span >Add Pic</span>
    </button>
+=======
+        <button className="addPicButton" onClick={this.openModal}><span className="replies">Add Pic</span>
+    <span className="comment">&#9875;</span></button>
+>>>>>>> 37f2fd6bd2b26dabf0697e2ee22db6c5f08725d6
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -101,16 +132,15 @@ class AddPic extends React.Component {
              
               <div className="userInputTitle">Add Pic:</div>
               <input className="informationInupt"
+                type = "file"
                 name="picture"
-                placeholder=""
-                value={this.state.picture} 
-                onChange={this.handleInputChange}
+                ref={(ref) => { this.uploadInput = ref; }}
                 
                  />
 
             
             
-              <button className="doneButton" onClick={this.handleFormSubmit}>Done</button>
+              <button className="doneButton" onClick={this.handleProfileImage}>Done</button>
                 
             </form>
             </div>

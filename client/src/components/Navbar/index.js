@@ -31,7 +31,8 @@ class Navbar extends Component {
 
 
     showNavigation = () => {
-        if (this.Auth.loggedIn()) {
+ 
+      if (this.Auth.loggedIn()) {
             return (
                 <ul className="navbar-nav">
                    <li className="nav-item">
@@ -48,8 +49,9 @@ class Navbar extends Component {
                             </a>
                     </li>
                 </ul>
-            );
-        } else {
+            )
+        }  
+        else {
             return (
                 <ul className="navbar-nav">
                     <li className="nav-item">

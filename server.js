@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const jwt = require('jsonwebtoken');
@@ -31,10 +32,8 @@ mongoose.set('useCreateIndex', true);
 
 // Init the express-jwt middleware
 const isAuthenticated = exjwt({
-  secret: 'all sorts of code up in here'
+  secret: process.env.SERVER_SECRET
 });
-
-
 // LOGIN ROUTE
 app.post('/api/login', (req, res) => {
   db.User.findOne({
@@ -42,7 +41,7 @@ app.post('/api/login', (req, res) => {
   }).then(user => {
     user.verifyPassword(req.body.password, (err, isMatch) => {
       if(isMatch && !err) {
-        let token = jwt.sign({ id: user._id, email: user.email }, 'all sorts of code up in here', { expiresIn: 129600 }); // Sigining the token
+        let token = jwt.sign({ id: user._id, email: user.email }, process.env.SERVER_SECRET, { expiresIn: 129600 }); // Sigining the token
         res.json({success: true, message: "Token Issued!", token: token, user: user} );
         
       } else {
@@ -51,19 +50,31 @@ app.post('/api/login', (req, res) => {
     });
   }).catch(err => res.status(404).json({success: false, message: "User not found", error: err}));
 });
-
 //POST ITEMS ROUTE
 app.post('/api/additem', isAuthenticated, (req, res) => {
   db.Item.create(req.body)
     .then(dbItem => {
-      return db.User.findOneAndUpdate({}, { $push: { items: dbItem._id }}, { new :true});
-      
+      return db.User.findOneAndUpdate({_id: dbItem.userId}, { $push: { items: dbItem._id }}, { new :true});
     })
     .then(dbUser =>{
       res.json(dbUser)
     })
     .catch(err => res.status(400).json(err));
 });
+
+app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
+  console.log(req.params.id)
+  db.Item.deleteOne({_id:req.params.id})
+    .then(data => {
+  
+      res.send(data)
+    })
+  
+    .catch(err => res.status(400).json(err));
+});
+
+
+
 
 
 
@@ -112,14 +123,17 @@ app.get('/api/allitems', (req, res) => {
 app.get('/api/allusers', (req, res) => {
   db.User.find({})
     .populate("items")
-    .then(data => res.json(data))
+    .then(data => {
+      res.json(data)})
     .catch(err => res.statusMessage(400).json(err))
 });
+
+
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated

@@ -16,6 +16,10 @@ export default {
   getAllUsers: () => {
     return axios.get('/api/allusers');
   },
+
+  getSearchItem: (itemName) => {
+    return axios.get(`/api/search/${itemName}`)
+  },
   // Sign up a user to our service
   signUpUser: (username, email, password, firstname, lastname, zipcode) => {
     return axios.post('api/signup', { username: username, email: email, password: password, firstname: firstname, lastname: lastname, zipcode: zipcode});
@@ -23,5 +27,9 @@ export default {
   // Adds new item and pushes item.id to array in Users  
   postItem: (body) => {
     return axios.post("/api/additem", { itemName: body.itemName, itemDescription: body.itemDescription, userId:body.userId, zipCode: body.zipCode, itemPicture: body.itemPicture })
+  },
+
+  deleteItem: (id) => {
+    return axios.get("/api/deleteitem/" + id)
   }
 };
