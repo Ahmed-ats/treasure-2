@@ -136,15 +136,18 @@ app.use(function (err, req, res, next) {
 });
 
 // Route to post chats to db
-app.post('/api/addchat', (req, res) => {
+app.post('/api/addchat', isAuthenticated, (req, res) => {
   db.Chat.create(req.body)
-    .then(data => res.json(data))
+    .then(data => {
+      console.log(req.body)
+      res.json(data);
+    })
     .catch(err => res.status(400).json(err));
 });
 
 // Route to get chats from db
-app.get('/api/getchats', (req, res) => {
-  db.Chat.find({})
+app.get('/api/getchats/:userId', (req, res) => {
+  db.Chat.find({userId: req.params.userId})
   .then(data =>res.json(data))
   .catch(err => res.statusMessage(400).json(err))
 })

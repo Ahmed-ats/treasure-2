@@ -6,7 +6,6 @@ const ChatSchema = new Schema({
     type: String,
     trim: true
   },
-
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User"

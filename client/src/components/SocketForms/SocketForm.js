@@ -2,21 +2,34 @@ import React, { Component } from 'react';
 import './SocketForm.css';
 import { sockets } from '../../utils/sockets';
 import API from '../../utils/API';
+import AuthService from '../AuthService';
 
 
 class SocketForm extends Component {
     state = {
         message: '',
         sentMessage: '',
-        messages: []
+        messages: [],
+        userId: ''
     };
 
     constructor(props) {
         super(props);
         sockets.listenForMessage(data => {
-            this.setState({ messages: [...this.state.messages, data] })
-            console.log(this.state);
+            this.setState({ messages: [...this.state.messages, data ] })
+            console.log(this.props);
         });
+        
+    }
+
+    componentDidMount() {
+        this.Auth = new AuthService();
+        let loggedInUser = this.Auth.getProfile();
+        console.log(loggedInUser);
+        this.setState({
+            userId: loggedInUser.id
+        });
+        console.log(this.state);
     }
 
     handleInputChange = event => {
@@ -34,8 +47,7 @@ class SocketForm extends Component {
     };
     handlePostChat = (e) => {
         e.preventDefault()
-        const { message } = this.state;
-        let userId = this.props.userId
+        const { message, userId } = this.state;
         const newChat = {
             message,
             userId

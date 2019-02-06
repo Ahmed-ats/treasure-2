@@ -26,7 +26,8 @@ export default {
   },
   // Adds chat to chat DB
   postChat: (body) => {
-    return axios.post("/api/addchat", { message: body.message })
+    console.log(body)
+    return axios.post("/api/addchat", { message: body.message, userId: body.userId })
   },
   // Gets chats from DB
   getAllChats: (id) => {
