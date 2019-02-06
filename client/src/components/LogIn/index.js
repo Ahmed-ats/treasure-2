@@ -132,6 +132,7 @@ class LogIn extends React.Component {
                 <div className="userInputTitleLogIn">Password:</div>
                 <input className="informationInuptLogIn"
                   name="password"
+                  type = "password"
                   placeholder="LettersAnd123And!"
                   value={this.state.password}
                   onChange={this.handleInputChange} />

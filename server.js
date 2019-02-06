@@ -62,6 +62,23 @@ app.post('/api/additem', isAuthenticated, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
+  console.log(req.params.id)
+  db.Item.deleteOne({_id:req.params.id})
+    .then(data => {
+  
+      res.send(data)
+    })
+  
+    .catch(err => res.status(400).json(err));
+});
+
+
+
+
+
+
+
 app.get('/api/getitem/:id', isAuthenticated, (req, res)=>{
   db.Item.findById(req.params.id)
   .then(data => {
