@@ -28,6 +28,15 @@ export default {
   postItem: (body) => {
     return axios.post("/api/additem", { itemName: body.itemName, itemDescription: body.itemDescription, userId:body.userId, zipCode: body.zipCode, itemPicture: body.itemPicture })
   },
+  // Adds chat to chat DB
+  postChat: (body) => {
+    console.log(body)
+    return axios.post("/api/addchat", { message: body.message, userId: body.userId })
+  },
+  // Gets chats from DB
+  getAllChats: (id) => {
+    return axios.get(`/api/getChats/${id}`);
+  },
 
   deleteItem: (id) => {
     return axios.get("/api/deleteitem/" + id)
