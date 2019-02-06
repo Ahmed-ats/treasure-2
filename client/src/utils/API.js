@@ -23,5 +23,9 @@ export default {
   // Adds new item and pushes item.id to array in Users  
   postItem: (body) => {
     return axios.post("/api/additem", { itemName: body.itemName, itemDescription: body.itemDescription, userId:body.userId, zipCode: body.zipCode, itemPicture: body.itemPicture })
+  },
+
+  deleteItem: (id) => {
+    return axios.get("/api/deleteitem/" + id)
   }
 };

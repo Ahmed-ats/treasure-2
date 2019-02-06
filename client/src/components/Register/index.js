@@ -32,7 +32,7 @@ class Register extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      firstname: '',
+      fullname: '',
       lastname: '',
       username: '',
       password: '',
@@ -53,7 +53,7 @@ class Register extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.firstname, this.state.lastname, this.state.zipcode )
+    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.fullname, this.state.lastname, this.state.zipcode )
     .then(res=> {
       this.Auth.login(this.state.email, this.state.password).then(res => {
         console.log(res.data);
@@ -129,9 +129,9 @@ class Register extends React.Component {
               <div className="leftColumn">
               <div className="userInputTitle">First Name:</div>
               <input className="informationInupt"
-                name="firstname"
+                name="fullname"
                 placeholder="Gold"
-                value={this.state.firstname} 
+                value={this.state.fullname} 
                 onChange={this.handleInputChange}
                 
                  />
@@ -161,7 +161,8 @@ class Register extends React.Component {
 
               <div className="userInputTitle">Password:</div>
               <input className="informationInupt"
-              name="password"
+                name="password"
+                type = "password"
                 placeholder="LettersAnd123And!"
                 value={this.state.password} 
                 onChange={this.handleInputChange}/>

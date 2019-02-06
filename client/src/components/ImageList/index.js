@@ -12,6 +12,7 @@ const ImageList = (props) => {
         key={object.name}
         picture={object.itemPicture}
         username={object.username}
+        _id = {object._id}
         />
     })
     

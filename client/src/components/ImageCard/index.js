@@ -1,5 +1,13 @@
 import React from 'react';
 import './imagecard.css'
+import API from '../../utils/API';
+
+ 
+const handleDeleteItem = (id) => {
+        API.deleteItem(id);
+      // refresh data  
+      window.location.reload()
+}
 
 const ImageCard = (props) => {
 
@@ -13,6 +21,7 @@ const ImageCard = (props) => {
                     <p className="card-text">{props.itemDescription}</p>
                     <p className="card-text">Posted By: {props.username}</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>
+                    <button onClick={ () => handleDeleteItem(props._id)}> Delete</button>
                 </div>
             </div>
         </div>
