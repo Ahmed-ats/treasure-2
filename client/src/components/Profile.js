@@ -54,7 +54,7 @@ class Profile extends Component {
           
           <ProfileImage  userpicture = {this.state.picture} />
          
-          <AddPic />
+          <AddPic userId={this.state.userId}/>
          
           <p>Username: {this.state.username}</p>
           <p>Email: {this.state.email}</p>

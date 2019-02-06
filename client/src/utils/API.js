@@ -37,8 +37,15 @@ export default {
   getAllChats: (id) => {
     return axios.get(`/api/getChats/${id}`);
   },
-
+  // Delete an item
   deleteItem: (id) => {
-    return axios.get("/api/deleteitem/" + id)
+    return axios.get(`/api/deleteitem/${id}`)
+  },
+  // add profile image 
+  userimage:  body => {
+    const id = body.userId
+    console.log(body)
+    return axios.put(`/api/userimage/${id} `,{imageurl: body.imgurl})
+
   }
 };
