@@ -3,6 +3,8 @@ import './SocketForm.css';
 import { sockets } from '../../utils/sockets';
 import API from '../../utils/API';
 import AuthService from '../AuthService';
+const io = require('socket.io-client')
+const socket = io.connect('http://localhost:3000')
 
 
 class SocketForm extends Component {
@@ -23,13 +25,17 @@ class SocketForm extends Component {
     }
 
     componentDidMount() {
-        this.Auth = new AuthService();
-        let loggedInUser = this.Auth.getProfile();
-        console.log(loggedInUser);
-        this.setState({
-            userId: loggedInUser.id
-        });
-        console.log(this.state);
+
+        sockets.test("hello test");
+        // this.Auth = new AuthService();
+        // let loggedInUser = this.Auth.getProfile();
+        // console.log(loggedInUser);
+        // this.setState({
+        //     userId: loggedInUser.id
+        // });
+        // console.log(this.state);
+
+
     }
 
     handleInputChange = event => {

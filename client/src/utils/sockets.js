@@ -13,6 +13,11 @@ const sockets = {
     sendMessage: (data) => {
         // us sending an event of message with any data
         socket.emit('message', data);
+    },
+
+    test: (data) => {
+        socket.emit('test', data);
     }
+
 };
 export { sockets };
