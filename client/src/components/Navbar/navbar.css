@@ -90,7 +90,7 @@ body {
 .shipMove {
     position: absolute;
     top: 79%;
-    left: -200px;
+    left: -60px;
     z-index: 10;
     height:3vh;
     width:4vw;
@@ -107,7 +107,7 @@ body {
     }
   
     to {
-      transform: translate(1920px,0);
+      transform: translate(100vw,0);
     }
   }
 
