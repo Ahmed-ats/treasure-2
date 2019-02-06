@@ -175,7 +175,13 @@ connections = [];
 io.on('connection', function(socket){
     connections.push(socket);
     console.log("connected: %s sockets connected", connections.length);
+    socket.join("itemID");
 
+    io.to("itemID").emit("someEvent");
+
+    socket.on("itemId", function(data){
+      io.emit("itemId", data);
+    });
 
     //Disconnect
     socket.on('disconnect', function(data){
