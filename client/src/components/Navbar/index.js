@@ -90,7 +90,7 @@ class Navbar extends Component {
 
                 </div>
 
-                <img className="shipMove" src="./images/ship.png" alt="ship" />
+               
             </nav>
         )
     }
