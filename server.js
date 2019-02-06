@@ -78,7 +78,7 @@ app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
 
 
 
-
+//Get items from DB
 app.get('/api/getitem/:id', isAuthenticated, (req, res)=>{
   db.Item.findById(req.params.id)
   .then(data => {
@@ -149,14 +149,30 @@ app.use(function (err, req, res, next) {
   }
 });
 
-// start chat code
+// Route to post chats to db
+app.post('/api/addchat', isAuthenticated, (req, res) => {
+  db.Chat.create(req.body)
+    .then(data => {
+      console.log(req.body)
+      res.json(data);
+    })
+    .catch(err => res.status(400).json(err));
+});
+
+// Route to get chats from db
+app.get('/api/getchats/:userId', (req, res) => {
+  db.Chat.find({userId: req.params.userId})
+  .then(data =>res.json(data))
+  .catch(err => res.statusMessage(400).json(err))
+})
+
 
 users = [];
 connections = [];
 
 
 //Needs to verify user (socket.on(VERIFY_USER), Then connect with username)
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
     connections.push(socket);
     console.log("connected: %s sockets connected", connections.length);
 
@@ -169,12 +185,18 @@ io.sockets.on('connection', function(socket){
         connections.splice(connections.indexOf(socket), 1);
         console.log("Disconnected: %s sockets connected", connections.length);
     });
+
+    socket.on('message', function(data){
+      console.log(data);
+      io.emit('message', data);
+    });
+
     
 
     //send message
     socket.on('send message', function(data){
-        // console.log(data)
-        io.sockets.emit('new message', {msg: data, user:socket.username})
+        console.log(data)
+        io.emit('new message', {msg: data, user:socket.username})
     });
 
     //new user
@@ -186,7 +208,7 @@ io.sockets.on('connection', function(socket){
     });
 
     function updateUsernames(){
-        io.sockets.emit('get users', users);
+        io.emit('get users', users);
     }
 });
 //end chat code
@@ -197,6 +219,6 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
