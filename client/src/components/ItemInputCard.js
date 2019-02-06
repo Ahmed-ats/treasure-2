@@ -131,8 +131,8 @@ class ItemInputCard extends React.Component {
     render() {
         return (
             <div>
-                <button className="postItem"onClick={this.openModal}><span class="replies">Post item</span>
-                <span className="comment"> 🔱️</span></button>
+                <button className="postItem"onClick={this.openModal}><span >Post item</span>
+               </button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}

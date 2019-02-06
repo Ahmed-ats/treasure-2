@@ -26,28 +26,9 @@ class App extends Component {
     });
   }
 
-  isMatch = (item) => {
-    return item.itemName === this.state.search;
-  }
-  filter = (item) => {
-
-    if (item.itemName === this.state.search){
-    
-    }
-
-  }
   handleSearchSubmit = () => {
     
     var filArr = [];
-
-    // if(filArr[0].items.length === 0){
-    //   this.componentDidMount();
-    // }
-
-    console.log(this.state);
-    if (this.state.items[0].items.length === 0){
-      alert("Sorry, nothing");
-    }
     if (this.state.search) {
       this.setState({
         items: filArr
@@ -59,17 +40,20 @@ class App extends Component {
       user.items.forEach(item => {
         if (user.items.filter(item => item.itemName === this.state.search)) {
           var filtItems = user.items.filter(item => item.itemName === this.state.search);
-       
         } 
         user.items = filtItems;
         
-      })
-      filArr.push(user)  
-
-
+      });
+      if (user.items.length !== 0){
+        filArr.push(user)  
+      } 
     });
 
-    console.log(filArr)
+    if (filArr.length === 0) {
+      alert("nothing.")
+      this.componentDidMount();
+    }
+
   }
 
   
