@@ -13,9 +13,7 @@
    
     opacity: .8;
 
-    color:rgb(204, 219, 233);
+    background-color:rgb(255, 255, 255);
   }
-  button .comment { display: none; }
-  button:hover .replies { display: none; }
-  button:hover .comment { display: inline; }
+
  

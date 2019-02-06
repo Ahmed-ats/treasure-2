@@ -19,7 +19,8 @@ body {
  
   opacity: 1;
 
-  color:rgb(255, 255, 255);
+  background-color:  rgb(204, 219, 233);
+  color: black;
 }
 .logOutButton{
   color:black;
@@ -37,11 +38,10 @@ body {
  
   opacity: 1;
 
-  color:rgb(255, 255, 255);
+  background-color:  rgb(204, 219, 233);
+  color: black;
 }
-a .comment { display: none; }
-a:hover .replies { display: none; }
-a:hover .comment { display: inline; }
+
 
 
 
