@@ -44,7 +44,7 @@ class Profile extends Component {
       <div className="container">
         <div className="Profile">
           <h1 className="headerProfile">Ye Profile</h1>
-          <p>Ahoy {this.state.firstname} <span title="Will of the D., sign of a great pirate!">D</span> {this.state.lastname}!</p>
+          <p>Ahoy {this.state.firstname} {this.state.lastname}!</p>
           <div className="profilePicture"></div>
           <AddPic />
           <p>Username: {this.state.username}</p>

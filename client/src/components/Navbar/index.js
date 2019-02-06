@@ -34,14 +34,18 @@ class Navbar extends Component {
         if (this.Auth.loggedIn()) {
             return (
                 <ul className="navbar-nav">
+                   <li className="nav-item">
+                        <Link className="nav-link profileButton" to="/"> <span className="replies">Home</span>
+                            </Link>
+                    </li>
                     <li className="nav-item">
                         <Link className="nav-link profileButton" to="/profile"> <span className="replies">Profile</span>
-                            <span className="comment">🏝️</span></Link>
+                            </Link>
                     </li>
                     <li className="nav-item">
                         {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-                        <a className="nav-link logOutButton" href="/" onClick={() => this.Auth.logout()}> <span className="replies">Log Out</span>
-                            <span className="comment">&#9760;</span></a>
+                        <a className="nav-link logOutButton" href="/" onClick={() => this.Auth.logout()}> <span >Log Out</span>
+                            </a>
                     </li>
                 </ul>
             );

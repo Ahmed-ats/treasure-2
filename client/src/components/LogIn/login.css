@@ -3,9 +3,9 @@
     font-size: 1.3vw;
     float: right;
     border: solid 3px;
-    border-radius: 20px;
+    border-radius: 20px; 
     font-weight: 900;
-    width:8vw;
+    width:8vw; 
    
     background-color: rgb(255, 255, 255);
 }
@@ -14,9 +14,7 @@
    
     opacity: .8;
 
-    color:rgb(255, 255, 255);
+    background-color:rgb(204, 219, 233);
   }
-  button .comment { display: none; }
-  button:hover .replies { display: none; }
-  button:hover .comment { display: inline; }
+
  

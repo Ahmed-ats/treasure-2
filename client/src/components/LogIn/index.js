@@ -100,11 +100,11 @@ class LogIn extends React.Component {
     
   }
 
-  render() {
+  render() {  
     return (
       <div>
-        <button className="logInButton"  onClick={this.openModal}>   <span class="replies">Log In</span>
-        <span className="comment">🚣‍♂️</span></button>
+        <button className="logInButton"  onClick={this.openModal}>   <span>Log In</span>
+        </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
