@@ -5,6 +5,7 @@ import API from '../src/utils/API';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
 import HomeImageList from './components/HomeImageList'
+import Navbar from './components/Navbar';
 const Auth = new AuthService();
 
 class App extends Component {
@@ -86,6 +87,7 @@ class App extends Component {
 
    
     return (
+    
       <div className="App">
         <div className="App-header">
           <h2>Welcome!</h2>
@@ -112,6 +114,7 @@ class App extends Component {
         <HomeImageList users={this.state.items}/>
       
       </div>
+  
     );
   }
 }

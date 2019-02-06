@@ -9,7 +9,6 @@ import './profile.css'
 import Modal from 'react-modal';
 
 
-
 class Profile extends Component {
 
   state = {
@@ -20,6 +19,11 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+   this.getData()
+  }
+
+
+  getData = () => {
     API.getUser(this.props.user.id)
       .then(res => {
         this.setState({
@@ -40,11 +44,13 @@ class Profile extends Component {
   render() {
 
     return (
+    
       <div className="container">
         <div className="Profile">
           <h1 className="headerProfile">Ye Profile</h1>
           <p>Ahoy {this.state.firstname} <span title="Will of the D., sign of a great pirate!">D</span> {this.state.lastname}!</p>
           <div className="profilePicture"></div>
+          <AddPic  />
          
           <p>Username: {this.state.username}</p>
           <p>Email: {this.state.email}</p>
@@ -58,8 +64,11 @@ class Profile extends Component {
         <ImageList itemObj={this.state.items} />
 
       </div>
+      
     )
+    
   }
+  
 }
 
 export default withAuth(Profile);
