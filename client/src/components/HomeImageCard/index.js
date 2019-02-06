@@ -15,8 +15,9 @@ const HomeImageCard = (props) => {
                     <p className="card-text">{item.itemDescription}</p>
                     <p className="card-text">Posted By: {props.user}</p>
 
-                    <button href="#" className="btn btn-primary" onClick={() => {
+                    <button href="/testing" className="btn btn-primary" onClick={() => {
                     props.getId(item._id)
+                    window.location.replace('/testing')
                     }}>Go somewhere</button>
                 </div>
             </div>

@@ -27,13 +27,13 @@ class SocketForm extends Component {
     componentDidMount() {
 
         sockets.test("hello test");
-        // this.Auth = new AuthService();
-        // let loggedInUser = this.Auth.getProfile();
-        // console.log(loggedInUser);
-        // this.setState({
-        //     userId: loggedInUser.id
-        // });
-        // console.log(this.state);
+        this.Auth = new AuthService();
+        let loggedInUser = this.Auth.getProfile();
+        console.log(loggedInUser);
+        this.setState({
+            userId: loggedInUser.id
+        });
+        console.log(this.state);
 
 
     }
@@ -62,10 +62,10 @@ class SocketForm extends Component {
         API.postChat(newChat)
 
     }
-    // handleGetChats = (req, res) => {
-    //     API.getAllChats()
-    //     .then(res.jason())
-    //   }
+    handleGetChats = (req, res) => {
+        API.getAllChats()
+        .then(res.jason())
+      }
 
     render() {
         return (

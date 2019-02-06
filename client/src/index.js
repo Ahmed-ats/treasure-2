@@ -25,7 +25,7 @@ ReactDOM.render(
             <Route exact path="/" component={App} />
           
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/profile" component={SocketForm} />
+            <Route exact path="/chat/:id" component={SocketForm} />
             
 
         </div>
