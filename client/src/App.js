@@ -74,7 +74,7 @@ class App extends Component {
     
       <div className="App">
         <div className="App-header">
-          <h2>Welcome!</h2>
+          {/* <h2>Welcome!</h2> */}
           <div>
           <input className="informationInupt"
               name="search"
@@ -82,7 +82,7 @@ class App extends Component {
               value={this.state.search} 
               onChange={this.handleInputChange}
           />
-          <button onClick={this.handleSearchSubmit}
+          <button type="button" span class="badge badge-light" onClick={this.handleSearchSubmit}
           key={this.state.search}
           >Search</button>
           </div>
