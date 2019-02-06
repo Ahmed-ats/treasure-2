@@ -73,7 +73,6 @@ app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-<<<<<<< HEAD
 app.put('/api/userimage/:id', isAuthenticated  , (req, res) => {
  console.log(req.body)
   db.User.findOneAndUpdate({_id:req.params.id}, req.body)
@@ -89,8 +88,6 @@ app.put('/api/userimage/:id', isAuthenticated  , (req, res) => {
 
 
 
-=======
->>>>>>> 58c358fe8fd69f70da3f9e765be6a4c1f1d1ba1f
 //Get items from DB
 app.get('/api/getitem/:id', isAuthenticated, (req, res)=>{
   db.Item.findById(req.params.id)
