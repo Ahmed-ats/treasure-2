@@ -21,8 +21,8 @@ export default {
     return axios.get(`/api/search/${itemName}`)
   },
   // Sign up a user to our service
-  signUpUser: (username, email, password, firstname, lastname, zipcode) => {
-    return axios.post('api/signup', { username: username, email: email, password: password, firstname: firstname, lastname: lastname, zipcode: zipcode});
+  signUpUser: (username, email, password, firstname, lastname, zipcode, picture) => {
+    return axios.post('api/signup', { username: username, email: email, password: password, firstname: firstname, lastname: lastname, zipcode: zipcode, imageurl:picture});
   },
   // Adds new item and pushes item.id to array in Users  
   postItem: (body) => {
@@ -37,8 +37,15 @@ export default {
   getAllChats: (id) => {
     return axios.get(`/api/getChats/${id}`);
   },
-
+  // Delete an item
   deleteItem: (id) => {
-    return axios.get("/api/deleteitem/" + id)
+    return axios.get(`/api/deleteitem/${id}`)
+  },
+  // add profile image 
+  userimage:  body => {
+    const id = body.userId
+    console.log(body)
+    return axios.put(`/api/userimage/${id} `,{imageurl: body.imgurl})
+
   }
 };

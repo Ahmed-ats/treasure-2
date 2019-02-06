@@ -23,11 +23,9 @@ ReactDOM.render(
         <div>
             <Navbar />
             <Route exact path="/" component={App} />
-          
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/chat/:id" component={SocketForm} />
             
-
         </div>
     </Router>
     , document.getElementById('root')
