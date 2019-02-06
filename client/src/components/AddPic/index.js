@@ -1,7 +1,7 @@
 
 
 import React from 'react';
- 
+
 import Modal from 'react-modal';
 import './addpic.css'
 import AuthService from './../AuthService';
@@ -33,6 +33,7 @@ class AddPic extends React.Component {
     this.state = {
       modalIsOpen: false,
       picture: '',
+      
      
     };
 
@@ -66,7 +67,8 @@ class AddPic extends React.Component {
 //     });
 // }
 
-  openModal() {
+openModal() {
+  
     this.setState({ modalIsOpen: true });
   }
 
@@ -82,6 +84,8 @@ class AddPic extends React.Component {
   handleProfileImage(e) {
 
     e.preventDefault();
+    const userId = this.props.userId;
+   
     const data = new FormData();
     data.append('file', this.uploadInput.files[0] );
     data.append('category', 'image');
@@ -93,11 +97,17 @@ class AddPic extends React.Component {
   
     response.json()
     .then((body) => {
-        console.log(body)
-      this.setState({
-          picture: body.s3Url  
-        })
-        
+     const imgurl = body.s3Url
+     const userPicId = {
+       userId,
+       imgurl
+     }
+        API.userimage(userPicId)
+      
+        // this.setState({
+        //   picture: body.s3Url  
+        // })
+      
         });
         this.closeModal();
     });

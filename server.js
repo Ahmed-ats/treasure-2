@@ -42,7 +42,7 @@ app.post('/api/login', (req, res) => {
     user.verifyPassword(req.body.password, (err, isMatch) => {
       if(isMatch && !err) {
         let token = jwt.sign({ id: user._id, email: user.email }, process.env.SERVER_SECRET, { expiresIn: 129600 }); // Sigining the token
-        res.json({success: true, message: "Token Issued!", token: token, user: user} );
+        res.json({success: true, message: "Token Issued!", token: token, user: user}, );
         
       } else {
         res.status(401).json({success: false, message: "Authentication failed. Wrong password."});
@@ -63,7 +63,7 @@ app.post('/api/additem', isAuthenticated, (req, res) => {
 });
 
 app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   db.Item.deleteOne({_id:req.params.id})
     .then(data => {
   
@@ -72,6 +72,21 @@ app.get('/api/deleteitem/:id', isAuthenticated, (req, res) => {
   
     .catch(err => res.status(400).json(err));
 });
+
+app.put('/api/userimage/:id', isAuthenticated  , (req, res) => {
+ console.log(req.body)
+  db.User.findOneAndUpdate({_id:req.params.id}, req.body)
+    .then(data => {
+      res.json(data)
+    })
+  
+    .catch(err => res.status(400).json(err));
+});
+
+
+
+
+
 
 //Get items from DB
 app.get('/api/getitem/:id', isAuthenticated, (req, res)=>{
@@ -101,7 +116,7 @@ app.get('/api/user/:id', isAuthenticated, (req, res) => {
   .then(data => {
     if(data) {
       res.json(data);
-      console.log(data)
+      // console.log(data)
     } else {
       res.status(404).send({success: false, message: 'No user found'});
     }
