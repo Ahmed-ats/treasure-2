@@ -25,15 +25,16 @@ class SocketForm extends Component {
     }
 
     componentDidMount() {
-
+        console.log(this.props);
         sockets.test("hello test");
-        // this.Auth = new AuthService();
-        // let loggedInUser = this.Auth.getProfile();
-        // console.log(loggedInUser);
-        // this.setState({
-        //     userId: loggedInUser.id
-        // });
-        // console.log(this.state);
+
+        this.Auth = new AuthService();
+        let loggedInUser = this.Auth.getProfile();
+        console.log(loggedInUser);
+        this.setState({
+            userId: loggedInUser.id
+        });
+        console.log(this.state);
 
 
     }
@@ -69,6 +70,7 @@ class SocketForm extends Component {
 
     render() {
         return (
+
             <div class="container">
                 <div id="messageArea" class="row">
                     <div class="col-md-4">

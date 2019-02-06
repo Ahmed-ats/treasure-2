@@ -1,9 +1,8 @@
 import React from 'react';
-
+import SocketForm from '../SocketForms/SocketForm';
+import {Link} from "react-router-dom";
 
 const HomeImageCard = (props) => {
-
-   
 
     var Card = props.items.map(item => {
         return (
@@ -15,9 +14,12 @@ const HomeImageCard = (props) => {
                     <p className="card-text">{item.itemDescription}</p>
                     <p className="card-text">Posted By: {props.user}</p>
 
-                    <button href="#" className="btn btn-primary" onClick={() => {
-                    props.getId(item._id)
-                    }}>Go somewhere</button>
+                    {/* <button href="#" className="btn btn-primary" onClick={() => {
+                    props.getId(item._id);
+                    window.location.replace(`/chat/${item._id}`)
+                    }}>Go somewhere</button> */}
+                    <Link to={`/chat/${item._id}`}>Go Somewhere</Link>
+                   
                 </div>
             </div>
         );
@@ -26,8 +28,6 @@ const HomeImageCard = (props) => {
     return (
         <div>{Card}</div>
     )
-
-
 }
 
 export default HomeImageCard;
