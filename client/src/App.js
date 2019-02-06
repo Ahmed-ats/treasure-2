@@ -25,16 +25,6 @@ class App extends Component {
     });
   }
 
-  isMatch = (item) => {
-    return item.itemName === this.state.search;
-  }
-  filter = (item) => {
-
-    if (item.itemName === this.state.search){
-    
-    }
-
-  }
   handleSearchSubmit = () => {
     
     var filArr = [];
@@ -52,7 +42,7 @@ class App extends Component {
         } 
         user.items = filtItems;
         
-      })
+      });
       if (user.items.length !== 0){
         filArr.push(user)  
       } 
