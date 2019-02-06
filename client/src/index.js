@@ -8,12 +8,9 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from "axios";
 import SocketForm from "./components/SocketForms/SocketForm"
 
-
-// Our Components
-// import Login from './components/Login';
 import Profile from './components/Profile';
-// import Signup from './components/Signup';
 import Navbar from './components/Navbar';
+
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -26,8 +23,11 @@ ReactDOM.render(
         <div>
             <Navbar />
             <Route exact path="/" component={App} />
+          
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profile" component={SocketForm} />
+            
+
         </div>
     </Router>
     , document.getElementById('root')

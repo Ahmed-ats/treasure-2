@@ -32,7 +32,7 @@ class Register extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      firstname: '',
+      fullname: '',
       lastname: '',
       username: '',
       password: '',
@@ -53,13 +53,17 @@ class Register extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.firstname, this.state.lastname, this.state.zipcode )
+    API.signUpUser(this.state.username, this.state.email, this.state.password, this.state.fullname, this.state.lastname, this.state.zipcode )
     .then(res=> {
-    // this.Auth.login(this.state.email, this.state.password)  
+      this.Auth.login(this.state.email, this.state.password).then(res => {
+        console.log(res.data);
+        window.location.replace("/");
+        this.closeModal();
+      })  
     
         // once the user has signed up
         // send them to the login page
-        this.closeModal();
+        
         // window.location.replace("/profile")
         // this.props.history.replace('/login');
       })
@@ -106,7 +110,7 @@ class Register extends React.Component {
     return (
       <div>
         <button className="signUpButton" onClick={this.openModal}><span class="replies">Sign Up</span>
-    <span class="comment">&#9875;</span></button>
+        <span className="comment">&#9875;</span></button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -125,9 +129,9 @@ class Register extends React.Component {
               <div className="leftColumn">
               <div className="userInputTitle">First Name:</div>
               <input className="informationInupt"
-                name="firstname"
+                name="fullname"
                 placeholder="Gold"
-                value={this.state.firstname} 
+                value={this.state.fullname} 
                 onChange={this.handleInputChange}
                 
                  />
@@ -157,7 +161,8 @@ class Register extends React.Component {
 
               <div className="userInputTitle">Password:</div>
               <input className="informationInupt"
-              name="password"
+                name="password"
+                type = "password"
                 placeholder="LettersAnd123And!"
                 value={this.state.password} 
                 onChange={this.handleInputChange}/>
