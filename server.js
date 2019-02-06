@@ -179,7 +179,7 @@ io.on('connection', function(socket){
     //     console.log("Disconnected: %s sockets connected", connections.length);
     // });
 
-    socket.on('test', function(data) {
+    socket.on('join', function(data) {
       console.log(data);
       socket.join(data);
     });

@@ -15,8 +15,8 @@ const sockets = {
         socket.emit('message', data);
     },
 
-    test: (data) => {
-        socket.emit('test', data);
+    join: (data) => {
+        socket.emit('join', data);
     }
 
 };

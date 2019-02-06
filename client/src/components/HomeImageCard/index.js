@@ -18,7 +18,7 @@ const HomeImageCard = (props) => {
                     props.getId(item._id);
                     window.location.replace(`/chat/${item._id}`)
                     }}>Go somewhere</button> */}
-                    <Link to={`/chat/${item._id}`}>Go Somewhere</Link>
+                    {/* <Link to={`/chat/${item._id}`}>Go Somewhere</Link> */}
                    
                 </div>
             </div>

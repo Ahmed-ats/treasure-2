@@ -12,32 +12,33 @@ class SocketForm extends Component {
         message: '',
         sentMessage: '',
         messages: [],
-        userId: ''
+        userId: '',
+        chatId: ''
     };
 
     constructor(props) {
         super(props);
         sockets.listenForMessage(data => {
             this.setState({ messages: [...this.state.messages, data ] })
-            console.log(this.props);
         });
-        
+        sockets.join(this.state.chatId);
     }
 
     componentDidMount() {
-        console.log(this.props);
-        sockets.test("hello test");
-
         this.Auth = new AuthService();
         let loggedInUser = this.Auth.getProfile();
-        console.log(loggedInUser);
         this.setState({
+            chatId: this.props.match.params.id,
             userId: loggedInUser.id
         });
-        console.log(this.state);
 
-
+        console.log(this.state)
     }
+
+    getHistory() {
+        
+    }
+
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -50,9 +51,11 @@ class SocketForm extends Component {
 
     submitForm = event => {
         event.preventDefault();
-        
     };
     handlePostChat = (e) => {
+
+       
+        console.log(this.state)
         e.preventDefault()
         const { message, userId } = this.state;
         const newChat = {
