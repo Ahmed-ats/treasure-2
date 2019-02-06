@@ -14,19 +14,12 @@ const HomeImageCard = (props) => {
                     <p className="card-text">{item.itemDescription}</p>
                     <p className="card-text">Posted By: {props.user}</p>
 
-<<<<<<< HEAD
-                    <button href="/testing" className="btn btn-primary" onClick={() => {
-                    props.getId(item._id)
-                    window.location.replace('/testing')
-                    }}>Go somewhere</button>
-=======
                     {/* <button href="#" className="btn btn-primary" onClick={() => {
                     props.getId(item._id);
                     window.location.replace(`/chat/${item._id}`)
                     }}>Go somewhere</button> */}
                     {/* <Link to={`/chat/${item._id}`}>Go Somewhere</Link> */}
                    
->>>>>>> 8d78e2bc5b9b55658e927cbc295a0cf35c8375e5
                 </div>
             </div>
         );
