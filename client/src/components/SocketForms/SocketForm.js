@@ -66,10 +66,10 @@ class SocketForm extends Component {
         API.postChat(newChat)
 
     }
-    // handleGetChats = (req, res) => {
-    //     API.getAllChats()
-    //     .then(res.jason())
-    //   }
+    handleGetChats = (req, res) => {
+        API.getAllChats()
+        .then(res.jason())
+      }
 
     render() {
         return (
