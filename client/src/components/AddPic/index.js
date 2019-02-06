@@ -93,11 +93,11 @@ class AddPic extends React.Component {
   
     response.json()
     .then((body) => {
-        console.log(body)
+        
       this.setState({
           picture: body.s3Url  
         })
-        
+       console.log(this.state.picture)
         });
         this.closeModal();
     });

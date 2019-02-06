@@ -7,13 +7,14 @@ import ImageList from './ImageList';
 import AddPic from './AddPic/index.js';
 import './profile.css'
 import Modal from 'react-modal';
-
+import ProfileImage from './ProfileImage';
 
 class Profile extends Component {
 
   state = {
     username: "",
     email: "",
+    picture: "",
     items: [],
     itemObjects: []
   };
@@ -33,6 +34,7 @@ class Profile extends Component {
           zipcode: res.data.zipcode,
           email: res.data.email,
           userId: res.data._id,
+          picture: res.data.imageurl,
           items: res.data.items
         })
         console.log(this.state)
@@ -49,8 +51,10 @@ class Profile extends Component {
         <div className="Profile">
           <h1 className="headerProfile">Ye Profile</h1>
           <p>Ahoy {this.state.firstname} <span title="Will of the D., sign of a great pirate!">D</span> {this.state.lastname}!</p>
-          <div className="profilePicture"></div>
-          <AddPic  />
+          
+          <ProfileImage  userpicture = {this.state.picture} />
+         
+          <AddPic />
          
           <p>Username: {this.state.username}</p>
           <p>Email: {this.state.email}</p>

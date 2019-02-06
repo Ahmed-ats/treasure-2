@@ -21,8 +21,8 @@ export default {
     return axios.get(`/api/search/${itemName}`)
   },
   // Sign up a user to our service
-  signUpUser: (username, email, password, firstname, lastname, zipcode) => {
-    return axios.post('api/signup', { username: username, email: email, password: password, firstname: firstname, lastname: lastname, zipcode: zipcode});
+  signUpUser: (username, email, password, firstname, lastname, zipcode, picture) => {
+    return axios.post('api/signup', { username: username, email: email, password: password, firstname: firstname, lastname: lastname, zipcode: zipcode, imageurl:picture});
   },
   // Adds new item and pushes item.id to array in Users  
   postItem: (body) => {

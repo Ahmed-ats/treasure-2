@@ -24,7 +24,7 @@ const UserSchema = new Schema({
   },
   zipcode: {
     type: Number,
-    required: true
+  
   },
   firstname:{
     type: String,
@@ -33,6 +33,11 @@ const UserSchema = new Schema({
   lastname:{
     type: String,
     required: true
+  },
+
+  imageurl: {
+    type : String,
+    default: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/220px-SNice.svg.png"
   },
   items: [
     {
