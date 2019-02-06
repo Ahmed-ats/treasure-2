@@ -31,12 +31,11 @@ class Profile extends Component {
           userId: res.data._id,
           items: res.data.items
         })
+        console.log(this.state)
       })
+
+      
   }
-
-
-
-
 
   render() {
 
@@ -46,11 +45,12 @@ class Profile extends Component {
           <h1 className="headerProfile">Ye Profile</h1>
           <p>Ahoy {this.state.firstname} <span title="Will of the D., sign of a great pirate!">D</span> {this.state.lastname}!</p>
           <div className="profilePicture"></div>
-          <AddPic />
+         
           <p>Username: {this.state.username}</p>
           <p>Email: {this.state.email}</p>
           <p>Zipcode: {this.state.zipcode} </p>
         </div>
+        
         {/* <Link to="/">Go home</Link> */}
         <ItemInputCard
           userId={this.state.userId}
